@@ -1,0 +1,191 @@
+/* =========================
+   HYDR∆ ENTERSCREEN STYLES
+   ========================= */
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #050507;
+  overflow: hidden;
+}
+
+/* ---- MAIN ENTER SCREEN ---- */
+
+#enter-screen {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background:
+    radial-gradient(circle at center, #0b1411 0%, #050507 60%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #8affc1;
+  text-align: center;
+  animation: screenBoot 1.2s ease-out;
+}
+
+/* Subtle scanlines */
+#enter-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+/* ---- TITLE ---- */
+
+#enter-screen h1 {
+  font-size: 4rem;
+  letter-spacing: 0.4rem;
+  margin-bottom: 2rem;
+  position: relative;
+  animation: glitch 2.8s infinite;
+}
+
+/* Glitch layers */
+#enter-screen h1::before,
+#enter-screen h1::after {
+  content: "HYDR∆";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 0.7;
+}
+
+#enter-screen h1::before {
+  color: #ff4d6d;
+  transform: translate(2px, 0);
+  clip-path: inset(0 0 60% 0);
+}
+
+#enter-screen h1::after {
+  color: #4ddcff;
+  transform: translate(-2px, 0);
+  clip-path: inset(40% 0 0 0);
+}
+
+/* ---- INPUT ---- */
+
+#delta-input {
+  width: 260px;
+  padding: 14px;
+  font-size: 1rem;
+  text-align: center;
+  background: #070a0f;
+  border: 1px solid #1cffb7;
+  color: #8affc1;
+  outline: none;
+  letter-spacing: 0.15rem;
+  transition: 0.2s ease;
+}
+
+#delta-input::placeholder {
+  color: #4fae8a;
+}
+
+#delta-input:focus {
+  box-shadow: 0 0 12px rgba(28, 255, 183, 0.4);
+}
+
+/* ---- BUTTON ---- */
+
+#delta-submit {
+  margin-top: 1.4rem;
+  padding: 12px 26px;
+  background: transparent;
+  border: 1px solid #1cffb7;
+  color: #8affc1;
+  cursor: pointer;
+  letter-spacing: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+#delta-submit:hover {
+  background: rgba(28, 255, 183, 0.12);
+  box-shadow: 0 0 16px rgba(28, 255, 183, 0.5);
+}
+
+/* ---- ERROR SCREEN ---- */
+
+#error-screen {
+  height: 100vh;
+  width: 100vw;
+  background: #050507;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ff6b6b;
+  animation: fadeIn 0.6s ease;
+}
+
+#error-screen img {
+  width: 260px;
+  margin-bottom: 1.2rem;
+  border-radius: 14px;
+  box-shadow: 0 0 30px rgba(255, 107, 107, 0.4);
+}
+
+#error-screen h2 {
+  font-size: 1.2rem;
+  letter-spacing: 0.2rem;
+  opacity: 0.9;
+}
+
+/* ---- FADE OUT ---- */
+
+.fade-out {
+  animation: fadeOut 0.6s forwards;
+}
+
+/* ---- ANIMATIONS ---- */
+
+@keyframes screenBoot {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes glitch {
+  0%, 90%, 100% {
+    transform: none;
+  }
+  92% {
+    transform: skewX(8deg);
+  }
+  94% {
+    transform: skewX(-8deg);
+  }
+}
